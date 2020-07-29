@@ -1,0 +1,18 @@
+div .custom-tooltip {
+  width: 140px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-radius: 10px;
+  background: #ac7eff;
+}
+
+div .custom-tooltip p {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+
+  font-size: 14px;
+  line-height: 21px;
+  color: #eee;
+}
