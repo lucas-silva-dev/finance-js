@@ -56,17 +56,17 @@ function Chart() {
 
   return (
     <ComposedChart width={620} baseValue="dataMin" height={250} data={chart}>
-      <XAxis dataKey="label" />
-      <YAxis />
+      <XAxis stroke="#4a1a31" dataKey="label" />
+      <YAxis stroke="#4a1a31" />
       <Tooltip content={<CustomTooltip />} />
-      <CartesianGrid stroke="#f5f5f5" />
-      <Bar dataKey="volumeM" fill="#413ea0" />
+      <CartesianGrid stroke="#e9e9e9" />
+      <Bar dataKey="volumeM" fill="#FB8C66" />
       <Area
         type="monotone"
         dataKey="close"
-        stroke="#ff7300"
+        stroke="#413"
         fillOpacity={0}
-        fill="#ff7300"
+        fill="#413"
       />
     </ComposedChart>
   );

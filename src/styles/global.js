@@ -18,7 +18,7 @@ export default createGlobalStyle`
   }
 
   body {
-    /* background: #d4d4d4; */
+    background: #ffffff;
     background-color: #f0f0f5;
     -webkit-font-smoothing: antialiased;
   }

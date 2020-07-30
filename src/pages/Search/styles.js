@@ -21,7 +21,7 @@ export const Content = styled.div`
   padding: 40px;
   border-radius: 10px;
   background-color: #f0f0f5;
-  box-shadow: 0 0 100px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 
   section {
     display: flex;
@@ -31,6 +31,7 @@ export const Content = styled.div`
 
     h1 {
       margin-bottom: 20px;
+      color: #333;
     }
 
     h2 {
@@ -38,6 +39,7 @@ export const Content = styled.div`
       place-items: center;
       text-align: center;
 
+      color: #333;
       font-size: 18px;
 
       span {

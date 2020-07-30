@@ -2,13 +2,14 @@
 import React, { useState, memo } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { FiDollarSign } from 'react-icons/fi';
 
 import Button from '../Button';
 import Input from '../Input';
 
 import { stockRequest } from '~/store/modules/stock/actions';
 import { chartRequest } from '~/store/modules/chart/actions';
+
+import logo from '~/assets/profits.svg';
 
 import { Container } from './styles';
 
@@ -29,7 +30,7 @@ function Header() {
   return (
     <Container>
       <Link to="/">
-        <FiDollarSign />
+        <img src={logo} alt="Finance" />
       </Link>
 
       <form onSubmit={handleSubmit}>
