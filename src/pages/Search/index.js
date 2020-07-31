@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 
 import Chart from '~/components/Chart';
 
+import { currencyFormat } from '~/utils/format';
+
 import { Container, Content } from './styles';
 
 function Search() {
@@ -22,7 +24,7 @@ function Search() {
 
           <h2>
             <span>Stock Price: </span>
-            {stock.latestPrice}
+            {currencyFormat(stock.latestPrice)}
           </h2>
           <h2>
             <span>Exchange: </span>

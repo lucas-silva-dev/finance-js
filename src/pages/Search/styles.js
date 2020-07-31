@@ -11,7 +11,7 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   width: 100%;
-  max-width: 920px;
+  max-width: 1020px;
   height: 460px;
   margin: 0 auto;
   display: flex;
