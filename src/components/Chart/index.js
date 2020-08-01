@@ -11,12 +11,18 @@ import {
 } from 'recharts';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
+import { FaSpinner } from 'react-icons/fa';
 
 import { chartRequest } from '~/store/modules/chart/actions';
 
 import Button from '~/components/Button';
 
-import './styles.css';
+import {
+  TooltipContainer,
+  ChartContainer,
+  PeriodContent,
+  ResponsiveChart,
+} from './styles';
 
 function CustomTooltip({ active, payload }) {
   if (active) {
@@ -24,30 +30,30 @@ function CustomTooltip({ active, payload }) {
     const volume = data.volumeM.toFixed(2);
 
     return (
-      <div className="custom-tooltip">
-        <p className="">
+      <TooltipContainer>
+        <p>
           <span>Open </span>
           {data.open}
         </p>
-        <p className="">
+        <p>
           <span>high</span>
           {data.high}
         </p>
-        <p className="">
+        <p>
           <span>Low</span> {data.low}
         </p>
-        <p className="">
+        <p>
           <span>Close</span> {data.close}
         </p>
-        <p className="">
+        <p>
           <span>Volume</span>
           {`${volume}M`}
         </p>
-        <p className="">
+        <p>
           <span>date</span>
           {data.date}
         </p>
-      </div>
+      </TooltipContainer>
     );
   }
 
@@ -56,7 +62,9 @@ function CustomTooltip({ active, payload }) {
 
 function Chart() {
   const chartData = useSelector(state => state.chart.chart);
+  const loading = useSelector(state => state.chart.loading);
   const symbol = useSelector(state => state.stock.stock.symbol);
+
   const dispatch = useDispatch();
 
   const [chart, setChart] = useState([]);
@@ -83,8 +91,8 @@ function Chart() {
   ];
 
   return (
-    <section className="chart">
-      <div className="historical">
+    <ChartContainer>
+      <PeriodContent>
         {range.map(r => (
           <li key={r.period}>
             <Button onClick={() => handleChangePeriod(r.period)}>
@@ -92,30 +100,36 @@ function Chart() {
             </Button>
           </li>
         ))}
-      </div>
+      </PeriodContent>
 
-      <ComposedChart width={620} height={240} data={chart}>
-        <XAxis stroke="#333" dataKey="label" />
-        <YAxis
-          stroke="#333"
-          unit=" $"
-          minTickGap={0}
-          tickLine={false}
-          scale="sqrt"
-        />
-        <Tooltip content={<CustomTooltip />} />
-        <CartesianGrid stroke="#e9e9e9" />
-        <Bar dataKey="volumeM" fill="#FB8C66" />
-        <Line
-          dot={false}
-          type="monotoneX"
-          dataKey="close"
-          stroke="#4a1a31"
-          fillOpacity={0}
-          fill="#4a1a31"
-        />
-      </ComposedChart>
-    </section>
+      <ResponsiveChart loading={loading}>
+        {loading ? (
+          <FaSpinner color="#632342" size={50} />
+        ) : (
+          <ComposedChart data={chart}>
+            <YAxis
+              stroke="#333"
+              unit=" $"
+              minTickGap={0}
+              tickLine={false}
+              scale="sqrt"
+            />
+            <XAxis stroke="#333" dataKey="label" />
+            <Tooltip content={<CustomTooltip />} />
+            <CartesianGrid stroke="#e9e9e9" />
+            <Bar dataKey="volumeM" fill="#FB8C66" />
+            <Line
+              dot={false}
+              type="monotoneX"
+              dataKey="close"
+              stroke="#4a1a31"
+              fillOpacity={0}
+              fill="#4a1a31"
+            />
+          </ComposedChart>
+        )}
+      </ResponsiveChart>
+    </ChartContainer>
   );
 }
 

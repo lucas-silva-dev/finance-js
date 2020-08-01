@@ -9,7 +9,6 @@ export const Container = styled.header`
   justify-content: space-between;
   flex: 1;
 
-  background: #ffffff;
   background: #f0f0f5;
   border-bottom: 1px solid #efefef;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 2px;
